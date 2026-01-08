@@ -9,7 +9,8 @@ import { toast } from "react-toastify";
 import { StoreContext } from "../../context/StoreContext";
 
 const LogInPopUp = ({ setshowLogin }) => {
-  const url = "https://fooddeleveryproject.onrender.com/user";
+   const url = "https://fooddeleveryproject.onrender.com/user";
+  //const url = "http://localhost:3000/user";
   const { setToken } = useContext(StoreContext);
   const [formData, setFormData] = useState({
     name: "",

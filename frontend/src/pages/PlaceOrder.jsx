@@ -1,34 +1,35 @@
-import React, { useContext, useEffect, useState } from "react";
-import PersonIcon from "@mui/icons-material/Person";
-import EmailIcon from "@mui/icons-material/Email";
-import { StoreContext } from "../context/StoreContext";
-import LocationCityIcon from "@mui/icons-material/LocationCity";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import HomeWorkIcon from "@mui/icons-material/HomeWork";
-import MapIcon from "@mui/icons-material/Map";
-import PublicIcon from "@mui/icons-material/Public";
-import PhoneIcon from "@mui/icons-material/Phone";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router";
+import EmailIcon from '@mui/icons-material/Email';
+import HomeWorkIcon from '@mui/icons-material/HomeWork';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import MapIcon from '@mui/icons-material/Map';
+import PersonIcon from '@mui/icons-material/Person';
+import PhoneIcon from '@mui/icons-material/Phone';
+import PublicIcon from '@mui/icons-material/Public';
+import axios from 'axios';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+import { StoreContext } from '../context/StoreContext';
 
 const PlaceOrder = () => {
   const { getTotalAmount, food_list, token, cartItems } =
     useContext(StoreContext);
 
-  const url = "https://fooddeleveryproject.onrender.com/order/place";
+   const url = "https://fooddeleveryproject.onrender.com/order/place";
+ // const url = 'http://localhost:3000/order/place';
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    streetAddress: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    country: "",
-    phone: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    streetAddress: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    country: '',
+    phone: '',
   });
 
   // Function to handle form input changes
@@ -44,7 +45,7 @@ const PlaceOrder = () => {
     food_list.forEach((item) => {
       if (cartItems[item._id] > 0) {
         let itemInfo = item;
-        itemInfo["quantity"] = cartItems[item._id];
+        itemInfo['quantity'] = cartItems[item._id];
         orderItems.push(itemInfo);
       }
     });
@@ -59,11 +60,11 @@ const PlaceOrder = () => {
         const { session_url } = res.data;
         window.location.replace(session_url);
       } else {
-        alert("Error");
+        alert('Error');
       }
     } catch (error) {
-      console.error("Error placing order:", error);
-      alert("Something went wrong");
+      console.error('Error placing order:', error);
+      alert('Something went wrong');
     } finally {
       setLoading(false);
     }
@@ -71,11 +72,11 @@ const PlaceOrder = () => {
 
   useEffect(() => {
     if (!token) {
-      navigate("/cart");
-      toast.error("Please login to continue");
+      navigate('/cart');
+      toast.error('Please login to continue');
     } else if (getTotalAmount() === 0) {
-      navigate("/cart");
-      toast.error("Your cart is empty");
+      navigate('/cart');
+      toast.error('Your cart is empty');
     }
   }, [token]);
 
@@ -264,7 +265,7 @@ const PlaceOrder = () => {
                 type="submit"
                 className="before:ease relative flex mx-auto  items-center justify-center  px-6  h-[40px] overflow-hidden rounded-xl bg-[#9c28b1] font-poppins text-white font-medium shadow-2xl transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:shadow-[#9c28b1] hover:before:-translate-x-80"
               >
-                {loading ? "Please wait..." : "Add Food Detail"}
+                {loading ? 'Please wait...' : 'Add Food Detail'}
               </button>
             </div>
           </div>

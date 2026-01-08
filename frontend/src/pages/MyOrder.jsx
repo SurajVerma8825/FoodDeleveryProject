@@ -1,11 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
-import { StoreContext } from "../context/StoreContext";
-import axios from "axios";
-import { assets } from "../assets/assets";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import axios from 'axios';
+import { useContext, useEffect, useState } from 'react';
+import { StoreContext } from '../context/StoreContext';
 
 const MyOrder = () => {
   const url = "https://fooddeleveryproject.onrender.com/order/userorder";
+
+  //const url = 'http://localhost:3000/order/userorder';
+
   const { token } = useContext(StoreContext);
   const [data, setData] = useState([]);
 
@@ -36,9 +38,9 @@ const MyOrder = () => {
               <p className=" md:text-start  text-center font-medium ">
                 {order.items.map((item, index) => {
                   if (index === order.items.length - 1) {
-                    return item.name + "*" + item.quantity;
+                    return item.name + '*' + item.quantity;
                   } else {
-                    return item.name + "*" + item.quantity + ",";
+                    return item.name + '*' + item.quantity + ',';
                   }
                 })}
               </p>
